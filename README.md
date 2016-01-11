@@ -34,10 +34,18 @@ chmod +x AVVMDiscover.pl
 6) Run `AVVMDisvover.pl` with the appropriate options and verify that VMs and/or vApps are added as expected. Example:
 
 ```bash
-
+ /home/admin/scripts/AVVMDiscover/AVVMDiscover.pl --vcenter=brs-sjc-vcenter-1 --datacenter="BRS SJC SE Lab" --policy="VM Backups" --policydomain=/brs-sjc-vcenter-1/VirtualMachines
 ```
 
-7) Schedule `AVVMDiscover.pl` to run in cron 
+7) Schedule `AVVMDiscover.pl` to run in cron. Example: 
+
+```bash
+admin@brs-sjc-av-1:~/scripts/>: sudo crontab -u admin -e
+```
+
+```
+05 19 * * * /home/admin/scripts/AVVMDiscover/AVVMDiscover.pl --vcenter=brs-sjc-vcenter-1 --datacenter="BRS SJC SE Lab" --policy="VM Backups" --policydomain=/brs-sjc-vcenter-1/VirtualMachines >> /home/admin/scripts/AVVMDiscover/AVVMDiscover-brs-sjc-vcenter-1.log 2>&1
+```
 
 ## Future
 
