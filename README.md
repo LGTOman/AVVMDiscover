@@ -48,15 +48,23 @@ admin@brs-sjc-av-1:~/scripts/>: sudo crontab -u admin -e
 ```
 ## Usage Instructions
 
-=head1 NAME
+### DESCRIPTION
 
- AVVMDiscover.pl - Dyanamically adds Virtual Machines to Avamar
+ `AVVMDiscover.pl` will query Avamar for the vcenter specificed and add vApps and VMs to it based on the query options
+ that are specified. The script can add vApps and/or VMs based soly on what vCenter Datacenter that they reside
+ in. It can also be retricted to vApps and/or VMs that are part of a host or cluster, full or partial name of
+ the vApp and/or VM, in a specfic vCenter folder, or part of a Resource Group. The filters are additive, meaning
+ that adding a filter will make the vApps and/or VMs that are selected more specific.
 
-=head1 SYNOPSIS
+ An exclude file can also be specified. This file contains the names of any vApps and/or VMs that should be
+ excluded from the vApps and/or VMs being added and not backed up. One vApp and/or VM is listed per line in the
+ exclude file.
+
+### Usage 
 
  AVVMDiscover.pl [options] --vcenter=<vcenter> --datacenter=<Datacenter> --policy=<Policy> --policydomain=<PolicyDomain>
-          [--hostorcluster=<HostOrClusterName>] [--vmnamequery=<VMNameQuery>] [--folderquery=<FolderQuery>]
-          [--resourcegroup=<ResourceGroupQuery>]  [--excludefile=<ExcludeFile>]
+                 [--hostorcluster=<HostOrClusterName>] [--vmnamequery=<VMNameQuery>] [--folderquery=<FolderQuery>]
+                 [--resourcegroup=<ResourceGroupQuery>]  [--excludefile=<ExcludeFile>]
 
  Options:
    -? | --help      Brief help message
@@ -70,8 +78,6 @@ admin@brs-sjc-av-1:~/scripts/>: sudo crontab -u admin -e
                     full path of the folder will also help. To match FolderB and everything below it in
                     the example you would use: --folderquery="\/FolderA\/FolderB\/" --recursive. Other
                     special charecters such as ( or ) may also need to be escaped.
-
-=head1 OPTIONS
 
  --vcenter=<vcenter>                  <required> The name of vCenter as it appears in the domain list in
                                                  Avamar.
@@ -109,19 +115,6 @@ admin@brs-sjc-av-1:~/scripts/>: sudo crontab -u admin -e
 
  NOTE: All queries are case sensitive, regex format.
 
-=head1 DESCRIPTION
-
- B<AVVMDiscover.pl> will query Avamar for the vcenter specificed and add vApps and VMs to it based on the query options
- that are specified. The script can add vApps and/or VMs based soly on what vCenter Datacenter that they reside
- in. It can also be retricted to vApps and/or VMs that are part of a host or cluster, full or partial name of
- the vApp and/or VM, in a specfic vCenter folder, or part of a Resource Group. The filters are additive, meaning
- that adding a filter will make the vApps and/or VMs that are selected more specific.
-
- An exclude file can also be specified. This file contains the names of any vApps and/or VMs that should be
- excluded from the vApps and/or VMs being added and not backed up. One vApp and/or VM is listed per line in the
- exclude file.
-
-=cut
 
 ## Future
 
